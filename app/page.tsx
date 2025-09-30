@@ -1,3 +1,11 @@
+import { Header } from "@/components/header";
+import { Hero } from "@/components/hero";
+
 export default function HomePage() {
-  return <div className="text-muted-foreground text-7xl">Home Page</div>;
+  return (
+    <div>
+      <Header />
+      <Hero />
+    </div>
+  );
 }
