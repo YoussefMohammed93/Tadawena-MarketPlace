@@ -1,3 +1,3 @@
 export default function HomePage() {
-  return <div>Home Page</div>;
+  return <div className="text-muted-foreground text-7xl">Home Page</div>;
 }
