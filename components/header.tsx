@@ -55,7 +55,7 @@ export const Header = () => {
       </div>
 
       {/* Main Header */}
-      <div className="w-full bg-primary py-3 md:py-4">
+      <div className="w-full bg-primary py-3 md:pt-1 md:pb-4">
         <div className="max-w-7xl mx-auto px-4 md:px-5">
           {/* Mobile & Tablet Layout (< 1024px) */}
           <div className="lg:hidden">
@@ -98,15 +98,15 @@ export const Header = () => {
                     <input
                       type="text"
                       placeholder="Search products..."
-                      className="w-full pl-10 pr-4 py-3 border-0 outline-none rounded-full text-sm"
+                      className="w-full hover:bg-[#EDEBFF] focus:bg-[#EDEBFF] text-primary transition-all duration-300   pl-10 pr-4 py-3 border-0 outline-none rounded-full text-sm"
                     />
+                    <Button
+                      variant="default"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full mr-1 font-semibold !px-4 !py-2 text-sm"
+                    >
+                      Search
+                    </Button>
                   </div>
-                  <Button
-                    variant="default"
-                    className="rounded-full mr-1 font-semibold !px-4 !py-2 text-sm"
-                  >
-                    Search
-                  </Button>
                 </div>
               </div>
             )}
@@ -122,7 +122,7 @@ export const Header = () => {
                 width={169}
                 height={55}
                 priority
-                className="h-10 xl:h-12 w-auto"
+                className="h-10 xl:h-14 w-auto"
               />
             </Link>
 
@@ -134,15 +134,15 @@ export const Header = () => {
                   <input
                     type="text"
                     placeholder="Search everything at Tadawena store..."
-                    className="w-full pl-10 xl:pl-12 pr-4 py-2.5 xl:py-3 border-0 outline-none rounded-full text-sm xl:text-base"
+                    className="w-full hover:bg-[#EDEBFF] focus:bg-[#EDEBFF] text-primary transition-all duration-300 pl-10 xl:pl-12 pr-4 py-3 border-0 outline-none rounded-full text-sm xl:text-base"
                   />
+                  <Button
+                    variant="default"
+                    className="absolute right-[3.5px] xl:right-2 top-1/2 -translate-y-1/2 rounded-full font-semibold !px-4 xl:!px-6 !py-2.5 xl:!py-4 text-sm xl:text-base"
+                  >
+                    Search
+                  </Button>
                 </div>
-                <Button
-                  variant="default"
-                  className="rounded-full mr-1.5 xl:mr-2 font-semibold !px-4 xl:!px-6 !py-2.5 xl:!py-4 text-sm xl:text-base"
-                >
-                  Search
-                </Button>
               </div>
             </div>
 
@@ -163,7 +163,7 @@ export const Header = () => {
                   <User className="size-5 xl:size-6" />
                 </div>
                 <div className="hidden xl:flex flex-col items-start text-muted-foreground">
-                  <span className="text-sm font-semibold">Sign In</span>
+                  <span className="text-sm font-medium">Sign In</span>
                   <span className="text-xs font-medium">Account</span>
                 </div>
               </Link>
