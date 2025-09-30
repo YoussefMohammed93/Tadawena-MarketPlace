@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -10,14 +9,76 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+
+const mobileNavItems = [
+  { href: "/best-sellers", label: "Best seller products" },
+  { href: "/discounts", label: "Super discounts" },
+  { href: "/reviews", label: "Customer reviews" },
+  { href: "/categories/vitamin-d3", label: "Vitamin D3 Supplements" },
+  { href: "/categories/mothers-infants", label: "Mothers & Infants" },
+  { href: "/categories/general-health", label: "General Health" },
+  { href: "/vitamin-d", label: "Vitamin D" },
+  { href: "/order-tracking", label: "Order Tracking" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
+];
 
 export const Navbar = () => {
   const [homeOpen, setHomeOpen] = useState(false);
   const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Check if at the very top
+      setIsAtTop(currentScrollY === 0);
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down and past 100px - hide navbar
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - only show if at top
+        setIsVisible(currentScrollY === 0);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   return (
-    <nav className="hidden lg:block w-full bg-background border-b">
-      <div className="max-w-7xl mx-auto px-5">
+    <nav
+      className={`w-full bg-background border-b sticky top-0 z-30 transition-transform duration-300 ${
+        isAtTop && isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
+      {/* Mobile Horizontal Scrollable Nav */}
+      <div className="lg:hidden w-full overflow-x-auto scrollbar-hide">
+        <div className="flex items-center gap-4 px-4 py-3 min-w-max">
+          {mobileNavItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop Nav with Dropdowns */}
+      <div className="hidden lg:block max-w-7xl mx-auto px-5">
         <div className="flex items-center justify-between h-14">
           {/* Left Navigation */}
           <div className="flex items-center gap-8">
